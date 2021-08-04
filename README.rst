@@ -67,7 +67,7 @@ Linux)::
 Hacking
 -------
 
-TODO: improve this section
+Get the source and build C lib and module:
 
 .. code-block:: sh
 
@@ -94,6 +94,11 @@ TODO: improve this section
     # Build the CFFI module "in-place"
     # This will create the ./mozjpeg_lossless_optimization/_mozjpeg_opti.*.so file on Linux
     python ./mozjpeg_lossless_optimization/mozjpeg_opti_build.py
+
+Lint::
+
+    pip install nox
+    nox -s lint
 
 
 Licenses

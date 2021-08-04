@@ -1,5 +1,4 @@
 import os
-from distutils import ccompiler
 
 from cffi import FFI
 
@@ -18,7 +17,7 @@ ffibuilder.set_source(
         _ROOT,
         os.path.join(_ROOT, "..", "mozjpeg"),
         os.path.join(_ROOT, "..", "mozjpeg", "build"),
-    ]
+    ],
 )
 ffibuilder.cdef(open(_H_FILE, "r").read())
 
