@@ -82,7 +82,7 @@ TODO: improve this section
 
     # Create and activate a Python virtualenv
     python3 -m venv __env__
-    source __env__/bin/activate.csh
+    source __env__/bin/activate
 
     # Install Python dependencies in the virtualenv
     pip install -e .[dev]
@@ -104,9 +104,9 @@ See the `LICENSE
 <https://github.com/wanadev/mozjpeg-lossless-optimization/blob/master/LICENSE>`_
 file for more information.
 
-MozJPEG is covered by three compatible BSD-style open source licenses. See `its
-license file <https://github.com/mozilla/mozjpeg/blob/master/LICENSE.md>`_ for
-more information.
+**MozJPEG** is covered by three compatible BSD-style open source licenses. See
+`its license file <https://github.com/mozilla/mozjpeg/blob/master/LICENSE.md>`_
+for more information.
 
 
 Changelog
