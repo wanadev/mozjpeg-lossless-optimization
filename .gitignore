@@ -1,0 +1,15 @@
+# Python
+__pycache__
+*.pyc
+
+# CFFI / Build
+build/
+_*.c
+_*.o
+_*.so
+_*.pyd
+_*.dll
+_*.dylib
+
+# misc
+__env__

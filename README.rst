@@ -1,0 +1,115 @@
+MozJPEG Lossless Optimization
+=============================
+
+This library optimizes JPEGs losslessly using MozJPEG_.
+
+To reduce the file sizes,
+
+* the Huffman table of the JPEGs is optimized,
+* the baseline JPEGs are converted to progressive JPEGs,
+* and any metadata and ICC profiles are removed.
+
+The JPEGs optimized with this library are identical to what you get using the
+``jpegtran`` tool from MozJPEG with the ``-optimize``, ``-progressive`` and
+``-copy none`` options.
+
+
+.. _MozJPEG: https://github.com/mozilla/mozjpeg
+
+
+Usage
+-----
+
+.. code-block:: python
+
+   import mozjpeg_lossless_optimization
+
+   with open("./image.jpg", "rb") as input_jpeg_file:
+       input_jpeg_bytes = input_jpeg_file.read()
+
+   output_jpeg_bytes = mozjpeg_lossless_optimization.optimize(input_jpeg_bytes)
+
+   with open("./out.jpg", "wb") as output_jpeg_file:
+       output_jpeg_file.write(output_jpeg_bytes)
+
+
+Install
+-------
+
+From Sources
+~~~~~~~~~~~~
+
+To install MozJPEG Lossless Optimization, MozJPEG will be compiled, so you will
+need a C compilator and cmake. On Debian / Ubuntu you can install everything
+you need with the following command::
+
+    sudo apt install build-essential cmake python3 python3-dev python3-pip python3-setuptools
+
+Once everything installed, clone this repository::
+
+    git clone https://github.com/wanadev/mozjpeg-lossless-optimization.git
+
+Then navigate to the project's folder::
+
+    cd mozjpeg-lossless-optimization
+
+Retrieve submodules::
+
+    git submodule init
+    git submodule update
+
+And finally build and install using the following command (as ``root`` on
+Linux)::
+
+    python3 setup.py install
+
+
+Hacking
+-------
+
+TODO: improve this section
+
+.. code-block:: sh
+
+    # Install system dependencies
+    sudo apt install build-essential cmake python3 python3-dev python3-pip python3-setuptools
+
+    # Get the sources
+    git clone https://github.com/wanadev/mozjpeg-lossless-optimization.git
+    cd mozjpeg-lossless-optimization
+    git submodule init
+    git submodule update
+
+    # Create and activate a Python virtualenv
+    python3 -m venv __env__
+    source __env__/bin/activate.csh
+
+    # Install Python dependencies in the virtualenv
+    pip install -e .[dev]
+
+    # Build MozJPEG
+    # This will generate files in ./mozjpeg/build/ folder
+    python setup.py build
+
+    # Build the CFFI module "in-place"
+    # This will create the ./mozjpeg_lossless_optimization/_mozjpeg_opti.*.so file on Linux
+    python ./mozjpeg_lossless_optimization/mozjpeg_opti_build.py
+
+
+Licenses
+--------
+
+**MozJPEG Lossless Optimization** is licensed under the BSD 3 Clause license.
+See the `LICENSE
+<https://github.com/wanadev/mozjpeg-lossless-optimization/blob/master/LICENSE>`_
+file for more information.
+
+MozJPEG is covered by three compatible BSD-style open source licenses. See `its
+license file <https://github.com/mozilla/mozjpeg/blob/master/LICENSE.md>`_ for
+more information.
+
+
+Changelog
+---------
+
+Nothing yet :)
