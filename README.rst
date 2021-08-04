@@ -85,7 +85,7 @@ TODO: improve this section
     source __env__/bin/activate
 
     # Install Python dependencies in the virtualenv
-    pip install -e .[dev]
+    pip install cffi
 
     # Build MozJPEG
     # This will generate files in ./mozjpeg/build/ folder
