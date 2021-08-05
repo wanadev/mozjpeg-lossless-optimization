@@ -1,6 +1,8 @@
 MozJPEG Lossless Optimization
 =============================
 
+|Github| |Discord| |PYPI Version| |Build Status| |Black| |License|
+
 This library optimizes JPEGs losslessly using MozJPEG_.
 
 To reduce the file sizes,
@@ -118,3 +120,17 @@ Changelog
 ---------
 
 Nothing yet :)
+
+
+.. |Github| image:: https://img.shields.io/github/stars/wanadev/mozjpeg-lossless-optimization?label=Github&logo=github
+   :target: https://github.com/wanadev/mozjpeg-lossless-optimization
+.. |Discord| image:: https://img.shields.io/badge/chat-Discord-8c9eff?logo=discord&logoColor=ffffff
+   :target: https://discord.gg/BmUkEdMuFp
+.. |PYPI Version| image:: https://img.shields.io/pypi/v/mozjpeg-lossless-optimization.svg
+   :target: https://pypi.python.org/pypi/mozjpeg-lossless-optimization
+.. |Build Status| image:: https://github.com/wanadev/mozjpeg-lossless-optimization/workflows/Python%20CI/badge.svg
+   :target: https://github.com/wanadev/mozjpeg-lossless-optimization/actions
+.. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://black.readthedocs.io/en/stable/
+.. |License| image:: https://img.shields.io/pypi/l/mozjpeg-lossless-optimization.svg
+   :target: https://github.com/wanadev/mozjpeg-lossless-optimization/blob/master/LICENSE
