@@ -27,23 +27,22 @@ class CustomBuildPy(build_py):
             os.mkdir("./mozjpeg/build")
 
         os.chdir("./mozjpeg/build")
-
-        subprocess.call(
-            [
-                "cmake",
-                "..",
-                "-DENABLE_SHARED=FALSE",
-                "-DENABLE_STATIC=TRUE",
-                "-DPNG_SUPPORTED=FALSE",
-                "-DCMAKE_BUILD_TYPE=Release",
-            ]
-        )
+        cmake_command = [
+            "cmake",
+            "..",
+            "-DENABLE_SHARED=FALSE",
+            "-DENABLE_STATIC=TRUE",
+            "-DPNG_SUPPORTED=FALSE",
+            "-DCMAKE_BUILD_TYPE=Release",
+        ]
 
         if ccompiler.get_default_compiler() == "unix":
             os.environ["CFLAGS"] = "%s -fPIC" % os.environ.get("CFLAGS", "")
+            subprocess.call(cmake_command)
             subprocess.call(["make"])
         elif ccompiler.get_default_compiler() == "msvc":
             msbuild = _find_msbuild()
+            subprocess.call(cmake_command)
             subprocess.call([msbuild, "-p:Configuration=Release", "ALL_BUILD.vcxproj"])
         else:
             raise Exception("Unhandled platform")
