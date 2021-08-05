@@ -38,6 +38,21 @@ Usage
 Install
 -------
 
+From PyPI
+~~~~~~~~~
+
+To install MozJPEG Lossless Optimization from PyPI, just run the following
+command::
+
+    pip install mozjpeg-lossless-optimization
+
+.. NOTE::
+
+   We provide precompiled packages for most common platforms. You may need to
+   install additional build dependencies if there is no precompiled package
+   available for your platform (see below).
+
+
 From Sources
 ~~~~~~~~~~~~
 
@@ -60,8 +75,7 @@ Retrieve submodules::
     git submodule init
     git submodule update
 
-And finally build and install using the following command (as ``root`` on
-Linux)::
+And finally build and install using the following command::
 
     python3 setup.py install
 
