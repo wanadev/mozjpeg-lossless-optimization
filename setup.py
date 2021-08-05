@@ -54,9 +54,7 @@ class CustomBuildPy(build_py):
                     "-DCMAKE_BUILD_TYPE=Release",
                 ]
             )
-            subprocess.call(
-                [msbuild, "-p:Configuration=Release", "ALL_BUILD.vcxproj"]
-            )
+            subprocess.call([msbuild, "-p:Configuration=Release", "ALL_BUILD.vcxproj"])
         else:
             raise Exception("Unhandled platform")
 
