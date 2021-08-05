@@ -42,21 +42,21 @@ class CustomBuildPy(build_py):
             )
             subprocess.call(["make"])
         elif ccompiler.get_default_compiler() == "msvc":
-            raise NotImplementedError("Windows build is not supported yet")
-            # msbuild = _find_msbuild()
-            # subprocess.call(
-            #     [
-            #         "cmake",
-            #         "..",
-            #         "-DENABLE_SHARED=FALSE",
-            #         "-DENABLE_STATIC=TRUE",
-            #         "-DPNG_SUPPORTED=FALSE",
-            #         "-DCMAKE_BUILD_TYPE=Release",
-            #     ]
-            # )
-            # subprocess.call(
-            #     [msbuild, "-p:Configuration=Release", "???.sln"]
-            # )
+            # raise NotImplementedError("Windows build is not supported yet")
+            msbuild = _find_msbuild()
+            subprocess.call(
+                [
+                    "cmake",
+                    "..",
+                    "-DENABLE_SHARED=FALSE",
+                    "-DENABLE_STATIC=TRUE",
+                    "-DPNG_SUPPORTED=FALSE",
+                    "-DCMAKE_BUILD_TYPE=Release",
+                ]
+            )
+            subprocess.call(
+                [msbuild, "-p:Configuration=Release", "ALL_BUILD.vcxproj"]
+            )
         else:
             raise Exception("Unhandled platform")
 

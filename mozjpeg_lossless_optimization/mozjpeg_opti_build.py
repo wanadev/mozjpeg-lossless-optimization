@@ -1,4 +1,5 @@
 import os
+from distutils import ccompiler
 
 from cffi import FFI
 
@@ -6,7 +7,12 @@ from cffi import FFI
 _ROOT = os.path.abspath(os.path.dirname(__file__))
 _C_FILE = os.path.join(_ROOT, "mozjpeg_opti.c")
 _H_FILE = os.path.join(_ROOT, "mozjpeg_opti.h")
-_LIBJPEG_STATIC_LIB = os.path.join(_ROOT, "..", "mozjpeg", "build", "libjpeg.a")
+if ccompiler.get_default_compiler() == "unix":
+    _LIBJPEG_STATIC_LIB = os.path.join(_ROOT, "..", "mozjpeg", "build", "libjpeg.a")
+elif ccompiler.get_default_compiler() == "msvc":
+    _LIBJPEG_STATIC_LIB = os.path.join(
+        _ROOT, "..", "mozjpeg", "build", "Release", "jpeg-static.lib"
+    )
 
 ffibuilder = FFI()
 ffibuilder.set_source(
