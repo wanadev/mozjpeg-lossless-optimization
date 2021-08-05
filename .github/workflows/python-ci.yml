@@ -33,3 +33,7 @@ jobs:
       - name: "Lint with flake8 and Black"
         run: |
           python3 -m nox --session lint
+
+      - name: "Test with pytest"
+        run: |
+          python3 -m nox --session test-${{ matrix.python-version }}

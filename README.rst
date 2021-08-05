@@ -116,6 +116,11 @@ Lint::
     pip install nox
     nox -s lint
 
+Run tests::
+
+    pip install nox
+    pip -s test
+
 
 Licenses
 --------
