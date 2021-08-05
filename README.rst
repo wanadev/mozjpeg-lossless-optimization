@@ -119,7 +119,7 @@ for more information.
 Changelog
 ---------
 
-Nothing yet :)
+* **v0.9.0:** First public release
 
 
 .. |Github| image:: https://img.shields.io/github/stars/wanadev/mozjpeg-lossless-optimization?label=Github&logo=github
@@ -128,7 +128,7 @@ Nothing yet :)
    :target: https://discord.gg/BmUkEdMuFp
 .. |PYPI Version| image:: https://img.shields.io/pypi/v/mozjpeg-lossless-optimization.svg
    :target: https://pypi.python.org/pypi/mozjpeg-lossless-optimization
-.. |Build Status| image:: https://github.com/wanadev/mozjpeg-lossless-optimization/workflows/Python%20CI/badge.svg
+.. |Build Status| image:: https://github.com/wanadev/mozjpeg-lossless-optimization/actions/workflows/python-ci.yml/badge.svg
    :target: https://github.com/wanadev/mozjpeg-lossless-optimization/actions
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://black.readthedocs.io/en/stable/
