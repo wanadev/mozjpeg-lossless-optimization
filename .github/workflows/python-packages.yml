@@ -167,29 +167,29 @@ jobs:
           path: dist/
           retention-days: 1
 
-# publish_pypi:
+  publish_pypi:
 
-#   name: "Publish packages on PyPI"
-#   runs-on: ubuntu-latest
-#   needs:
-#     - build_sdist
-#     - build_wheel_linux_i686
-#     - build_wheel_linux_x86_64
-#     - build_wheel_windows_x86_64
-#     - build_wheel_macos_x86_64
+    name: "Publish packages on PyPI"
+    runs-on: ubuntu-latest
+    needs:
+      - build_sdist
+      - build_wheel_linux_i686
+      - build_wheel_linux_x86_64
+      - build_wheel_windows_x86_64
+      - build_wheel_macos_x86_64
 
-#   steps:
+    steps:
 
-#     - name: "Download artifacts"
-#       uses: actions/download-artifact@v2
+      - name: "Download artifacts"
+        uses: actions/download-artifact@v2
 
-#     - name: "Move packages to the dist/ folder"
-#       run: |
-#         mkdir dist/
-#         mv sdist/* dist/
-#         mv wheel-*/*.whl dist/
+      - name: "Move packages to the dist/ folder"
+        run: |
+          mkdir dist/
+          mv sdist/* dist/
+          mv wheel-*/*.whl dist/
 
-#     - name: "Publish packages on PyPI"
-#       uses: pypa/gh-action-pypi-publish@release/v1
-#       with:
-#         password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: "Publish packages on PyPI"
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
