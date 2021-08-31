@@ -3,17 +3,14 @@
 
 import os
 import subprocess
-from distutils import ccompiler
 
 from setuptools import setup, find_packages
-from setuptools.command.build_py import build_py
+from setuptools.command.build_ext import build_ext
 
 
 def _find_msbuild(plat_spec="x64"):
-    # https://github.com/python/cpython/blob/master/Lib/distutils/_msvccompiler.py
-    import distutils._msvccompiler as msvc
-
-    vc_env = msvc._get_vc_env(plat_spec)
+    from setuptools import msvc
+    vc_env = msvc.msvc14_get_vc_env(plat_spec)
     if "vsinstalldir" not in vc_env:
         raise Exception("Unable to find any Visual Studio installation")
     return os.path.join(
@@ -21,8 +18,8 @@ def _find_msbuild(plat_spec="x64"):
     )
 
 
-class CustomBuildPy(build_py):
-    def run(self):
+class CustomBuildExt(build_ext):
+    def build_extensions(self):
         if not os.path.isdir("./mozjpeg/build"):
             os.mkdir("./mozjpeg/build")
 
@@ -36,20 +33,20 @@ class CustomBuildPy(build_py):
             "-DCMAKE_BUILD_TYPE=Release",
         ]
 
-        if ccompiler.get_default_compiler() == "unix":
+        if self.compiler.compiler_type == "unix":
             os.environ["CFLAGS"] = "%s -fPIC" % os.environ.get("CFLAGS", "")
             subprocess.call(cmake_command)
             subprocess.call(["make"])
-        elif ccompiler.get_default_compiler() == "msvc":
+        elif self.compiler.compiler_type == "msvc":
             msbuild = _find_msbuild()
             subprocess.call(cmake_command)
             subprocess.call([msbuild, "-p:Configuration=Release", "ALL_BUILD.vcxproj"])
         else:
-            raise Exception("Unhandled platform")
+            raise Exception("Unsupported platform")
 
         os.chdir("../..")
 
-        build_py.run(self)
+        build_ext.build_extensions(self)
 
 
 long_description = ""
@@ -87,6 +84,6 @@ setup(
         "mozjpeg_lossless_optimization/mozjpeg_opti_build.py:ffibuilder",
     ],
     cmdclass={
-        "build_py": CustomBuildPy,
+        "build_ext": CustomBuildExt,
     },
 )
