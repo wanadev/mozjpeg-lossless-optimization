@@ -10,6 +10,7 @@ from setuptools.command.build_ext import build_ext
 
 def _find_msbuild(plat_spec="x64"):
     from setuptools import msvc
+
     vc_env = msvc.msvc14_get_vc_env(plat_spec)
     if "vsinstalldir" not in vc_env:
         raise Exception("Unable to find any Visual Studio installation")
