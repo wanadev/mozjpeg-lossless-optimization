@@ -138,6 +138,7 @@ for more information.
 Changelog
 ---------
 
+* **v1.0.1:** Python 3.10 support and wheels
 * **v1.0.0:** Handle JPEG decompression errors
 * **v0.9.0:** First public release
 
