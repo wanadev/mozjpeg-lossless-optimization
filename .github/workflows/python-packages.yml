@@ -65,7 +65,7 @@ jobs:
         with:
           name: wheels
           path: ./wheelhouse/*.whl
-          retention-days: 7
+          retention-days: 1
 
 # publish_pypi:
 
