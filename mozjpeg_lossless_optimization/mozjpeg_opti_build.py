@@ -14,13 +14,6 @@ elif ccompiler.get_default_compiler() == "msvc":
         _ROOT, "..", "mozjpeg", "build", "Release", "jpeg-static.lib"
     )
 
-if not os.path.isfile(_LIBJPEG_STATIC_LIB):
-    raise Exception(
-        "Unable to find libjpeg in '%s'. "
-        "If you are trying to build the lib manually, you should build mozjpeg first. "
-        % _LIBJPEG_STATIC_LIB
-    )
-
 ffibuilder = FFI()
 ffibuilder.set_source(
     "mozjpeg_lossless_optimization._mozjpeg_opti",
