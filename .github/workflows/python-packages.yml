@@ -60,6 +60,7 @@ jobs:
         env:
           CIBW_ARCHS_MACOS: x86_64 arm64 universal2
           PIP_USE_PEP517: 1
+          CIBW_SKIP: cp36-win32 cp37-win32 cp38-win32 cp39-win32 cp310-win32 cp311-win32
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v2
