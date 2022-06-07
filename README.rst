@@ -138,6 +138,11 @@ for more information.
 Changelog
 ---------
 
+* **v1.0.2:**
+
+  * ``arm64`` and ``universal2`` wheels for macOS on Apple Silicon
+  * ``x86`` and ``x68_64`` wheels for musl-based Linux distro (Alpine,...)
+
 * **v1.0.1:** Python 3.10 support and wheels
 * **v1.0.0:** Handle JPEG decompression errors
 * **v0.9.0:** First public release
