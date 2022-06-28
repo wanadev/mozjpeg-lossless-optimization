@@ -22,6 +22,8 @@ The JPEGs optimized with this library are identical to what you get using the
 Usage
 -----
 
+Optimizing (losslessly) a JPEG:
+
 .. code-block:: python
 
    import mozjpeg_lossless_optimization
@@ -33,6 +35,33 @@ Usage
 
    with open("./out.jpg", "wb") as output_jpeg_file:
        output_jpeg_file.write(output_jpeg_bytes)
+
+Converting an image to an optimized JPEG (using `Pillow <https://pillow.readthedocs.io/>`_):
+
+.. code-block:: python
+
+    from io import BytesIO
+
+    from PIL import Image  # pip install pillow
+    import mozjpeg_lossless_optimization
+
+
+    def convert_to_optimized_jpeg(input_path, output_path):
+        jpeg_io = BytesIO()
+
+        with Image.open(input_path, "r") as image:
+            image.convert("RGB").save(jpeg_io, format="JPEG", quality=90)
+
+        jpeg_io.seek(0)
+        jpeg_bytes = jpeg_io.read()
+
+        optimized_jpeg_bytes = mozjpeg_lossless_optimization.optimize(jpeg_bytes)
+
+        with open(output_path, "wb") as output_file:
+            output_file.write(optimized_jpeg_bytes)
+
+
+    convert_to_optimized_jpeg("input.png", "optimized.jpg")
 
 
 Install
