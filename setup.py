@@ -57,7 +57,7 @@ if os.path.isfile("README.rst"):
 
 setup(
     name="mozjpeg-lossless-optimization",
-    version="1.0.2",
+    version="1.1.0",
     description="Optimize JPEGs losslessly using MozJPEG",
     url="https://github.com/wanadev/mozjpeg-lossless-optimization",
     license="BSD-3-Clause",

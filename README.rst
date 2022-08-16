@@ -167,6 +167,10 @@ for more information.
 Changelog
 ---------
 
+* **v1.1.0:**
+
+  * Update mozjpeg to latest master commit: fd56921 (v4.1.1+)
+
 * **v1.0.2:**
 
   * ``arm64`` and ``universal2`` wheels for macOS on Apple Silicon
