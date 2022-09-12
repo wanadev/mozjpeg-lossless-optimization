@@ -167,6 +167,10 @@ for more information.
 Changelog
 ---------
 
+* **v1.1.1:**
+
+  * Fix sdist package: missing MozJPEG source files added
+
 * **v1.1.0:**
 
   * Update mozjpeg to latest master commit: fd56921 (v4.1.1+)
