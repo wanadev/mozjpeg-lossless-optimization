@@ -167,6 +167,10 @@ for more information.
 Changelog
 ---------
 
+* **[NEXT]** (changes on master but not released yet):
+
+  * Added Python 3.11 support
+
 * **v1.1.1:**
 
   * Fix sdist package: missing MozJPEG source files added
