@@ -58,6 +58,13 @@ if os.path.isfile("README.rst"):
 setup(
     name="mozjpeg-lossless-optimization",
     version="1.1.1",
+    project_urls={
+        "Source Code": "https://github.com/wanadev/mozjpeg-lossless-optimization",
+        "Documentation": "https://github.com/wanadev/mozjpeg-lossless-optimization#usage",
+        "Changelog": "https://github.com/wanadev/mozjpeg-lossless-optimization#changelog",
+        "Issues": "https://github.com/wanadev/mozjpeg-lossless-optimization/issues",
+        "Chat": "https://discord.gg/BmUkEdMuFp",
+    },
     description="Optimize JPEGs losslessly using MozJPEG",
     url="https://github.com/wanadev/mozjpeg-lossless-optimization",
     license="BSD-3-Clause",
