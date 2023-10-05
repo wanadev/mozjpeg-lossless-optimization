@@ -169,7 +169,8 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
-  * Nothing yet :)
+  * Added Python 3.12 support
+  * Removed Python 3.7 support
 
 * **v1.1.2:**
 
