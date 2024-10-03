@@ -5,6 +5,8 @@ on:
     tags:
       - "v[0-9]+\\.[0-9]+\\.[0-9]+"
       - "v[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]+"
+    branches:
+      - test-qemu-build
 
 jobs:
 
@@ -60,12 +62,17 @@ jobs:
         with:
           submodules: true
 
+      - name: "Set up QEMU"
+        if: runner.os == "Linux"
+        uses: docker/setup-qemu-action@v3
+
       - name: "Build wheels"
         uses: pypa/cibuildwheel@v2.21.1
         env:
           CIBW_ARCHS_MACOS: x86_64 arm64 universal2
           PIP_USE_PEP517: 1
           CIBW_SKIP: cp*-win32
+          CIBW_ARCHS_LINUX: auto aarch64 armv7l
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
