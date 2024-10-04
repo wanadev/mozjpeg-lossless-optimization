@@ -88,7 +88,7 @@ setup(
     maintainer="Fabien LOISON",
     packages=find_packages(),
     setup_requires=[
-        "cffi>=1.17.1",
+        "cffi>=1.0.0",
     ],
     install_requires=[
         "cffi>=1.0.0",
