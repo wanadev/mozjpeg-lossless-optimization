@@ -169,7 +169,7 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
-  * Nothing yet ;)
+  * misc(wheel): Fixed Windows builds by sticking on setuptools<74
 
 * **v1.1.3:**
 
