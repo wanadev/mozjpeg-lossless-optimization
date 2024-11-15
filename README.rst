@@ -169,6 +169,10 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
+  * Nothing yet ;)
+
+* **v1.1.4:**
+
   * misc(wheel): Fixed Windows builds by sticking on setuptools<74 (@flozz)
   * misc(wheel): Build ARM64 wheels for Linux platform (@flozz, #23)
   * misc: Added Python 3.13 support (@flozz)
