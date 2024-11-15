@@ -171,6 +171,8 @@ Changelog
 
   * misc(wheel): Fixed Windows builds by sticking on setuptools<74 (@flozz)
   * misc(wheel): Build ARM64 wheels for Linux platform (@flozz, #23)
+  * misc: Added Python 3.13 support (@flozz)
+  * misc!: Removed Python 3.8 support (@flozz)
 
 * **v1.1.3:**
 
