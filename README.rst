@@ -169,6 +169,10 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
+  * Nothing yet ;)
+
+* **v1.1.5:**
+
   * misc(deps): Pin setuptools only for PyPy on Windows platform (@flozz, #26)
 
 * **v1.1.4:**

@@ -70,7 +70,7 @@ if os.path.isfile("README.rst"):
 
 setup(
     name="mozjpeg-lossless-optimization",
-    version="1.1.4",
+    version="1.1.5",
     project_urls={
         "Source Code": "https://github.com/wanadev/mozjpeg-lossless-optimization",
         "Documentation": "https://github.com/wanadev/mozjpeg-lossless-optimization#usage",
