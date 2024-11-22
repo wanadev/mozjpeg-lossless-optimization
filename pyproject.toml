@@ -1,3 +1,7 @@
 [build-system]
-requires = ["setuptools<74"]
+requires = [
+    "setuptools",
+    # ↓ See https://github.com/wanadev/mozjpeg-lossless-optimization/issues/26
+    "setuptools<74; platform_system=='Windows' and implementation_name=='pypy'",
+]
 build-backend = "setuptools.build_meta"
