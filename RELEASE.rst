@@ -7,9 +7,15 @@ This file is a memo for the maintainer.
 0. Checks
 ---------
 
-* If MozJPEG has been updated, ensure ``./scripts/generate_manifest_in.sh`` has
-  been run, generate an sdist package and check we are able to build a wheel
-  from it.
+* If MozJPEG has been updated, ensure that ``MANIFEST.in`` has been updated,
+  generate an sdist package and check we are able to build a wheel from it::
+
+      ./scripts/generate_manifest_in.sh > MANIFEST.in
+
+      python setup.py sdist
+
+      python3 -m venv checkwheel.env
+      checkwheel.env/bin/pip install dist/*.tar.gz
 
 
 1. Release

@@ -41,8 +41,7 @@ class CustomBuildExt(build_ext):
         cmake_command = [
             "cmake",
             "..",
-            "-DENABLE_SHARED=FALSE",
-            "-DENABLE_STATIC=TRUE",
+            "-DBUILD_SHARED_LIBS=FALSE",
             "-DPNG_SUPPORTED=FALSE",
             "-DCMAKE_BUILD_TYPE=Release",
         ]

@@ -169,7 +169,7 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
-  * Nothing yet ;)
+  * Updated mozjpeg to latest master commit: 9b8d11f (v4.1.5+) (@flozz)
 
 * **v1.1.5:**
 
@@ -197,7 +197,7 @@ Changelog
 
 * **v1.1.0:**
 
-  * Update mozjpeg to latest master commit: fd56921 (v4.1.1+)
+  * Updated mozjpeg to latest master commit: fd56921 (v4.1.1+)
 
 * **v1.0.2:**
 
