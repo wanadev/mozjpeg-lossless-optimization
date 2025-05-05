@@ -1,7 +1,13 @@
 #include <setjmp.h>
 #include "../mozjpeg/cdjpeg.h"
+#include "../mozjpeg/transupp.h"
 #include "./mozjpeg_opti.h"
 
+void jcopy_markers_setup(j_decompress_ptr srcinfo,
+    JCOPY_OPTION option);
+void jcopy_markers_execute(j_decompress_ptr srcinfo,
+      j_compress_ptr dstinfo,
+      JCOPY_OPTION option);
 
 struct custom_jpeg_error_mgr {
     struct jpeg_error_mgr pub;
@@ -23,7 +29,8 @@ void mozjpeg_lossless_optimization_emit_message(j_common_ptr cinfo, int msg_leve
 unsigned long mozjpeg_lossless_optimization(
     unsigned char *input_jpeg_bytes,
     unsigned long input_jpeg_length,
-    unsigned char **output_jpeg_bytes
+    unsigned char **output_jpeg_bytes,
+    int copyoption
 ) {
     // Initialize the JPEG decompression object with custom error handling
     struct jpeg_decompress_struct srcinfo;
@@ -34,6 +41,9 @@ unsigned long mozjpeg_lossless_optimization(
     cjsrcerr.pub.emit_message = &mozjpeg_lossless_optimization_emit_message;
 
     jpeg_create_decompress(&srcinfo);
+    
+    // Enable saving of extra markers that we want to copy
+    jcopy_markers_setup(&srcinfo, copyoption);
 
     // Initialize the JPEG compression object with default error handling
     struct jpeg_compress_struct dstinfo;
@@ -66,6 +76,10 @@ unsigned long mozjpeg_lossless_optimization(
     // Compress
     jpeg_copy_critical_parameters(&srcinfo, &dstinfo);
     jpeg_write_coefficients(&dstinfo, src_coef_arrays);
+    
+    // Copy to the output file any extra markers that we want to preserve */
+    jcopy_markers_execute(&srcinfo, &dstinfo, copyoption);
+
     jpeg_finish_compress(&dstinfo);
 
     // Cleanup
