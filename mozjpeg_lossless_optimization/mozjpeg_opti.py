@@ -1,5 +1,6 @@
 from ._mozjpeg_opti import lib, ffi
 
+# fmt: off
 _copy_opts = {
     'none': 0,            # copy no optional markers
     'comments': 1,        # copy only comment (COM) markers
@@ -7,6 +8,7 @@ _copy_opts = {
     'all_except_icc': 3,  # copy all optional markers except APP2
     'icc': 4              # copy only ICC profile (APP2) markers
 }
+# fmt: on
 
 
 def optimize(input_jpeg_bytes, copy='none'):
