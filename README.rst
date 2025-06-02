@@ -46,6 +46,13 @@ To preserve image metadata, you can set the ``copy`` parameter to
        copy=mozjpeg_lossless_optimization.COPY_MARKERS.ALL,
    )
 
+Possible values for the ``copy`` parameter:
+
+* ``COPY_MARKERS.NONE``: copy no optional markers (default),
+* ``COPY_MARKERS.COMMENTS``: copy only comment (COM) markers,
+* ``COPY_MARKERS.ALL``: copy all optional markers,
+* ``COPY_MARKERS.ALL_EXCEPT_ICC``: copy all optional markers except APP2,
+* ``COPY_MARKERS.ICC``: copy only ICC profile (APP2) markers.
 
 Converting an image to an optimized JPEG (using `Pillow <https://pillow.readthedocs.io/>`_):
 
