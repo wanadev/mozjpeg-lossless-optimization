@@ -8,17 +8,17 @@ _ROOT = os.path.abspath(os.path.dirname(__file__))
 _C_FILE = os.path.join(_ROOT, "mozjpeg_opti.c")
 _H_FILE = os.path.join(_ROOT, "mozjpeg_opti.h")
 if ccompiler.get_default_compiler() == "unix":
-    _LIBJPEG_STATIC_LIB = os.path.join(_ROOT, "..", "mozjpeg", "build", "libjpeg.a")
+    _LIBTURBOJPEG_STATIC_LIB = os.path.join(_ROOT, "..", "mozjpeg", "build", "libturbojpeg.a")
 elif ccompiler.get_default_compiler() == "msvc":
-    _LIBJPEG_STATIC_LIB = os.path.join(
-        _ROOT, "..", "mozjpeg", "build", "Release", "jpeg-static.lib"
+    _LIBTURBOJPEG_STATIC_LIB = os.path.join(
+        _ROOT, "..", "mozjpeg", "build", "Release", "turbojpeg-static.lib"
     )
 
 ffibuilder = FFI()
 ffibuilder.set_source(
     "mozjpeg_lossless_optimization._mozjpeg_opti",
     open(_C_FILE, "r").read(),
-    extra_objects=[_LIBJPEG_STATIC_LIB],
+    extra_objects=[_LIBTURBOJPEG_STATIC_LIB],
     include_dirs=[
         _ROOT,
         os.path.join(_ROOT, "..", "mozjpeg"),

@@ -29,3 +29,7 @@ class Test_optimize(object):
     def test_optimize_raise_error_with_invalid_input_data(self):
         with pytest.raises(ValueError):
             mozjpeg_lossless_optimization.optimize(b"foobar")
+
+    def test_optimize_with_copy(self, image_bytes):
+        result = mozjpeg_lossless_optimization.optimize(image_bytes, copy='all')
+        assert result.startswith(b"\xFF\xD8\xFF\xE0\x00\x10JFIF")
