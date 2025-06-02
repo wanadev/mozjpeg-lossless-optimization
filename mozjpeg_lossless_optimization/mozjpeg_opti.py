@@ -2,11 +2,11 @@ from ._mozjpeg_opti import lib, ffi
 
 # fmt: off
 _copy_opts = {
-    'none': 0,            # copy no optional markers
-    'comments': 1,        # copy only comment (COM) markers
-    'all': 2,             # copy all optional markers
-    'all_except_icc': 3,  # copy all optional markers except APP2
-    'icc': 4              # copy only ICC profile (APP2) markers
+    "none": 0,            # copy no optional markers
+    "comments": 1,        # copy only comment (COM) markers
+    "all": 2,             # copy all optional markers
+    "all_except_icc": 3,  # copy all optional markers except APP2
+    "icc": 4              # copy only ICC profile (APP2) markers
 }
 # fmt: on
 
