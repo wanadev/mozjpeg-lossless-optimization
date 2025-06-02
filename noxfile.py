@@ -3,6 +3,7 @@ import nox
 
 PYTHON_FILES = [
     "mozjpeg_lossless_optimization",
+    "tests",
     "setup.py",
     "noxfile.py",
 ]
@@ -26,3 +27,9 @@ def test(session):
     session.install("pytest")
     session.install(".")
     session.run("pytest", "-v", "tests")
+
+
+@nox.session(reuse_venv=True)
+def black_fix(session):
+    session.install("black")
+    session.run("black", *PYTHON_FILES)

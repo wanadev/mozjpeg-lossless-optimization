@@ -11,11 +11,11 @@ class Test_optimize(object):
 
     def test_optimize_returns_bytes(self, image_bytes):
         result = mozjpeg_lossless_optimization.optimize(image_bytes)
-        assert type(result) == bytes
+        assert type(result) is bytes
 
     def test_optimize_returns_a_jpeg(self, image_bytes):
         result = mozjpeg_lossless_optimization.optimize(image_bytes)
-        assert result.startswith(b"\xFF\xD8\xFF\xE0\x00\x10JFIF")
+        assert result.startswith(b"\xff\xd8\xff\xe0\x00\x10JFIF")
 
     def test_optimize_returns_a_smaller_jpeg(self, image_bytes):
         result = mozjpeg_lossless_optimization.optimize(image_bytes)
@@ -24,7 +24,7 @@ class Test_optimize(object):
 
     def test_optimize_raise_error_with_troncated_input_jpeg(self):
         with pytest.raises(ValueError):
-            mozjpeg_lossless_optimization.optimize(b"\xFF\xD8\xFF\xE0\x00\x10JFIF")
+            mozjpeg_lossless_optimization.optimize(b"\xff\xd8\xff\xe0\x00\x10JFIF")
 
     def test_optimize_raise_error_with_invalid_input_data(self):
         with pytest.raises(ValueError):
