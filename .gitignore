@@ -13,6 +13,7 @@ _*.so
 _*.pyd
 _*.dll
 _*.dylib
+.ccls-cache/
 
 # misc
 __env__
