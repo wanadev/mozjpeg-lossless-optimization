@@ -1,22 +1,23 @@
+from enum import IntEnum
+
 from ._mozjpeg_opti import lib, ffi
 
-# fmt: off
-_copy_opts = {
-    "none": 0,            # copy no optional markers
-    "comments": 1,        # copy only comment (COM) markers
-    "all": 2,             # copy all optional markers
-    "all_except_icc": 3,  # copy all optional markers except APP2
-    "icc": 4              # copy only ICC profile (APP2) markers
-}
-# fmt: on
+
+class COPY_MARKERS(IntEnum):
+    NONE = 0
+    COMMENTS = 1
+    ALL = 2
+    ALL_EXCEPT_ICC = 3
+    ICC = 4
 
 
-def optimize(input_jpeg_bytes, copy="none"):
+def optimize(input_jpeg_bytes, copy=COPY_MARKERS.NONE):
+
     output_jpeg_bytes_p = ffi.new("unsigned char**")
     output_jpeg_bytes_p_gc = ffi.gc(
         output_jpeg_bytes_p, lib.mozjpeg_lossless_optimization_free_bytes
     )
-    copy_option = _copy_opts.get(copy, 0)
+    copy_option = COPY_MARKERS(copy).value
 
     output_jpeg_length = lib.mozjpeg_lossless_optimization(
         input_jpeg_bytes,

@@ -31,5 +31,7 @@ class Test_optimize(object):
             mozjpeg_lossless_optimization.optimize(b"foobar")
 
     def test_optimize_with_copy(self, image_bytes):
-        result = mozjpeg_lossless_optimization.optimize(image_bytes, copy="all")
+        result = mozjpeg_lossless_optimization.optimize(
+            image_bytes, copy=mozjpeg_lossless_optimization.COPY_MARKERS.ALL
+        )
         assert result.startswith(b"\xff\xd8\xff\xe0\x00\x10JFIF")

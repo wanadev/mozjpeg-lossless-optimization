@@ -36,11 +36,15 @@ Optimizing (losslessly) a JPEG:
    with open("./out.jpg", "wb") as output_jpeg_file:
        output_jpeg_file.write(output_jpeg_bytes)
 
-To preserve image metadata, you can set the ``copy`` parameter to ``"all"``:
+To preserve image metadata, you can set the ``copy`` parameter to
+``mozjpeg_lossless_optimization.COPY_MARKERS.ALL``:
 
 .. code-block:: python
 
-   output_jpeg_bytes = mozjpeg_lossless_optimization.optimize(input_jpeg_bytes, copy="all")
+   output_jpeg_bytes = mozjpeg_lossless_optimization.optimize(
+       input_jpeg_bytes,
+       copy=mozjpeg_lossless_optimization.COPY_MARKERS.ALL,
+   )
 
 
 Converting an image to an optimized JPEG (using `Pillow <https://pillow.readthedocs.io/>`_):
