@@ -189,9 +189,16 @@ Changelog
 
   * Nothing yet ;)
 
+* **v1.3.0:**
+
+  * feat: Added an option to allow copying metadata from the original image
+    (@pierotofy, #4, #33)
+  * misc(build): Fixed build with cmake 3.13+ (@flozz)
+
 * **v1.2.0:**
 
-  * Updated mozjpeg to latest master commit: 9b8d11f (v4.1.5+) (@flozz)
+  * misc(mozjpeg): Updated mozjpeg to latest master commit: 9b8d11f (v4.1.5+)
+    (@flozz)
 
 * **v1.1.5:**
 
