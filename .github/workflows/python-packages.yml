@@ -27,7 +27,7 @@ jobs:
 
       - name: "Install python dependencies"
         run: |
-          pip install setuptools
+          pip install setuptools cffi
 
       - name: "Build source distribution"
         run: |
