@@ -62,9 +62,9 @@ jobs:
         with:
           submodules: true
 
-      - name: "Set up QEMU"
-        if: runner.os == 'Linux'
-        uses: docker/setup-qemu-action@v3
+      #- name: "Set up QEMU"
+      #  if: runner.os == 'Linux'
+      #  uses: docker/setup-qemu-action@v3
 
       - name: "Build wheels"
         uses: pypa/cibuildwheel@v3.0.0
@@ -73,6 +73,11 @@ jobs:
           CIBW_ARCHS_MACOS: x86_64 arm64 universal2
           CIBW_ARCHS_WINDOWS: AMD64
           PIP_USE_PEP517: 1
+
+      - name: "DEBUG"
+        run: |
+          ls -lah build/lib.*/mozjpeg_lossless_optimization/*.so
+          nm -g build/lib.*/mozjpeg_lossless_optimization/*.so
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
