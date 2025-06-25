@@ -5,40 +5,41 @@ on:
     tags:
       - "v[0-9]+\\.[0-9]+\\.[0-9]+"
       - "v[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]+"
+      - "fix-macos-wheels"
 
 jobs:
 
-  build_sdist:
+  #build_sdist:
 
-    name: "Source distribution"
-    runs-on: ubuntu-latest
+  #  name: "Source distribution"
+  #  runs-on: ubuntu-latest
 
-    steps:
+  #  steps:
 
-      - name: "Checkout the repository"
-        uses: actions/checkout@v4
-        with:
-          submodules: true
+  #    - name: "Checkout the repository"
+  #      uses: actions/checkout@v4
+  #      with:
+  #        submodules: true
 
-      - name: "Set up Python"
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
+  #    - name: "Set up Python"
+  #      uses: actions/setup-python@v5
+  #      with:
+  #        python-version: "3.13"
 
-      - name: "Install python dependencies"
-        run: |
-          pip install setuptools cffi
+  #    - name: "Install python dependencies"
+  #      run: |
+  #        pip install setuptools cffi
 
-      - name: "Build source distribution"
-        run: |
-          python setup.py sdist
+  #    - name: "Build source distribution"
+  #      run: |
+  #        python setup.py sdist
 
-      - name: "Upload artifacts"
-        uses: actions/upload-artifact@v4
-        with:
-          name: sdist
-          path: dist/
-          retention-days: 1
+  #    - name: "Upload artifacts"
+  #      uses: actions/upload-artifact@v4
+  #      with:
+  #        name: sdist
+  #        path: dist/
+  #        retention-days: 1
 
   build_wheels:
 
@@ -49,8 +50,8 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-24.04
-          - windows-2022
+          #- ubuntu-24.04
+          #- windows-2022
           - macos-13
 
     steps:
@@ -79,26 +80,26 @@ jobs:
           path: ./wheelhouse/*.whl
           retention-days: 1
 
-  publish_pypi:
+  #publish_pypi:
 
-    name: "Publish packages on PyPI"
-    runs-on: ubuntu-latest
-    needs:
-      - build_sdist
-      - build_wheels
+  #  name: "Publish packages on PyPI"
+  #  runs-on: ubuntu-latest
+  #  needs:
+  #    - build_sdist
+  #    - build_wheels
 
-    steps:
+  #  steps:
 
-      - name: "Download artifacts"
-        uses: actions/download-artifact@v4
+  #    - name: "Download artifacts"
+  #      uses: actions/download-artifact@v4
 
-      - name: "Move packages to the dist/ folder"
-        run: |
-          mkdir dist/
-          mv sdist/* dist/
-          mv wheels-*/*.whl dist/
+  #    - name: "Move packages to the dist/ folder"
+  #      run: |
+  #        mkdir dist/
+  #        mv sdist/* dist/
+  #        mv wheels-*/*.whl dist/
 
-      - name: "Publish packages on PyPI"
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+  #    - name: "Publish packages on PyPI"
+  #      uses: pypa/gh-action-pypi-publish@release/v1
+  #      with:
+  #        password: ${{ secrets.PYPI_API_TOKEN }}
