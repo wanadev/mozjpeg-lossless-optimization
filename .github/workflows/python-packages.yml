@@ -76,8 +76,11 @@ jobs:
 
       - name: "DEBUG"
         run: |
-          ls -lah build/lib.*/mozjpeg_lossless_optimization/*.so
-          nm -g build/lib.*/mozjpeg_lossless_optimization/*.so
+          for lib in build/lib.*/mozjpeg_lossless_optimization/*.so ; do
+            ls -lah $lib
+            nm -g $lib | grep _jcopy_markers
+            echo -------------------
+          done
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
