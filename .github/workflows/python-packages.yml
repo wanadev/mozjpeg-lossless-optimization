@@ -87,9 +87,7 @@ jobs:
       - name: "Build wheels"
         uses: pypa/cibuildwheel@v3.0.0
         env:
-          CIBW_ARCHS_LINUX: ${{ matrix.target.arch }}
-          CIBW_ARCHS_WINDOWS: ${{ matrix.target.arch }}
-          CIBW_ARCHS_MACOS: ${{ matrix.target.arch }}
+          CIBW_ARCHS: ${{ matrix.target.arch }}
           CMAKE_OSX_ARCHITECTURES: ${{ matrix.target.arch }}
           PIP_USE_PEP517: 1
 
