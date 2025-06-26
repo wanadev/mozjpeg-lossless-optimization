@@ -60,6 +60,9 @@ jobs:
           - name: "Linux ARM 64bits"
             os: ubuntu-24.04
             arch: aarch64
+          - name: "Linux ARMv7"
+            os: ubuntu-24.04
+            arch: armv7l
           - name: "macOS Intel 64bits"
             os: macos-13
             arch: x86_64
@@ -78,7 +81,7 @@ jobs:
           submodules: true
 
       - name: "Set up QEMU"
-        if: runner.os == 'Linux' && matrix.target.arch == 'aarch64'
+        if: runner.os == 'Linux' && (matrix.target.arch == 'aarch64' || matrix.target.arch == 'armv7l')
         uses: docker/setup-qemu-action@v3
 
       - name: "Build wheels"
@@ -89,14 +92,6 @@ jobs:
           CIBW_ARCHS_MACOS: ${{ matrix.target.arch }}
           CMAKE_OSX_ARCHITECTURES: ${{ matrix.target.arch }}
           PIP_USE_PEP517: 1
-
-      - name: "DEBUG"
-        run: |
-          for lib in build/lib.*/mozjpeg_lossless_optimization/*.so ; do
-            ls -lah $lib
-            nm -g $lib | grep _jcopy_markers
-            echo -------------------
-          done
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
