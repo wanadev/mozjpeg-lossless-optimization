@@ -74,20 +74,20 @@ jobs:
           CIBW_ARCHS_WINDOWS: AMD64
           PIP_USE_PEP517: 1
 
-      - name: "Build macOS x86_64 wheels"
-        uses: pypa/cibuildwheel@v3.0.0
-        if: runner.os == 'macOS'
-        env:
-          CMAKE_OSX_ARCHITECTURES: x86_64
-          CIBW_ARCHS_MACOS: x86_64
-          PIP_USE_PEP517: 1
-
       - name: "Build macOS arm64 wheels"
         uses: pypa/cibuildwheel@v3.0.0
         if: runner.os == 'macOS'
         env:
           CMAKE_OSX_ARCHITECTURES: arm64
           CIBW_ARCHS_MACOS: arm64
+          PIP_USE_PEP517: 1
+
+      - name: "Build macOS x86_64 wheels"
+        uses: pypa/cibuildwheel@v3.0.0
+        if: runner.os == 'macOS'
+        env:
+          CMAKE_OSX_ARCHITECTURES: x86_64
+          CIBW_ARCHS_MACOS: x86_64
           PIP_USE_PEP517: 1
 
       - name: "DEBUG"
