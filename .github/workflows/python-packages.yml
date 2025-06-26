@@ -42,16 +42,34 @@ jobs:
 
   build_wheels:
 
-    name: "Build wheels on ${{ matrix.os }}"
-    runs-on: ${{ matrix.os }}
+    name: "Build ${{ matrix.target.name }} wheels"
+    runs-on: ${{ matrix.target.os }}
 
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-24.04
-          - windows-2022
-          - macos-13
+        target:
+          - name: "Linux Intel 32bits"
+            os: ubuntu-24.04
+            arch: i686
+          - name: "Linux Intel 64bits"
+            os: ubuntu-24.04
+            arch: x86_64
+          - name: "Linux ARM 64bits"
+            os: ubuntu-24.04
+            arch: aarch64
+          - name: "Linux ARMv7"
+            os: ubuntu-24.04
+            arch: armv7l
+          - name: "macOS Intel 64bits"
+            os: macos-13
+            arch: x86_64
+          - name: "macOS Apple Silicon (ARM 64bits)"
+            os: macos-14
+            arch: arm64
+          - name: "Windows Intel 64bit"
+            os: windows-2022
+            arch: AMD64
 
     steps:
 
@@ -61,21 +79,20 @@ jobs:
           submodules: true
 
       - name: "Set up QEMU"
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && (matrix.target.arch == 'aarch64' || matrix.target.arch == 'armv7l')
         uses: docker/setup-qemu-action@v3
 
       - name: "Build wheels"
         uses: pypa/cibuildwheel@v3.0.0
         env:
-          CIBW_ARCHS_LINUX: auto aarch64
-          CIBW_ARCHS_MACOS: x86_64 arm64 universal2
-          CIBW_ARCHS_WINDOWS: AMD64
+          CIBW_ARCHS: ${{ matrix.target.arch }}
+          CMAKE_OSX_ARCHITECTURES: ${{ matrix.target.arch }}
           PIP_USE_PEP517: 1
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ matrix.os }}
+          name: wheels-${{ matrix.target.os }}-${{ matrix.target.arch }}
           path: ./wheelhouse/*.whl
           retention-days: 1
 

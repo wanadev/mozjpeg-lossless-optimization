@@ -187,7 +187,10 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
-  * Nothing yet ;)
+  * misc(wheel): Fixed macOS arm64 wheels (missing symbols in libturbojpg)
+    (@flozz, #34)
+  * !misc(wheel): Removed build of macOS universal2 wheels (@flozz, #34)
+  * misc(wheel): Build wheel for Linux ARMv7 platform (@flozz)
 
 * **v1.3.0:**
 
