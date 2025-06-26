@@ -44,16 +44,31 @@ jobs:
 
   build_wheels:
 
-    name: "Build wheels on ${{ matrix.os }}"
-    runs-on: ${{ matrix.os }}
+    name: "Build ${{ matrix.target.name }} wheels"
+    runs-on: ${{ matrix.target.os }}
 
     strategy:
       fail-fast: false
       matrix:
-        os:
-          #- ubuntu-24.04
-          #- windows-2022
-          - macos-14
+        target:
+          - name: "Linux Intel 32bits"
+            os: ubuntu-24.04
+            arch: i686
+          - name: "Linux Intel 64bits"
+            os: ubuntu-24.04
+            arch: x86_64
+          - name: "Linux ARM 64bits"
+            os: ubuntu-24.04
+            arch: aarch64
+          - name: "macOS Intel 64bits"
+            os: macos-13
+            arch: x86_64
+          - name: "macOS Apple Silicon (ARM 64bits)"
+            os: macos-14
+            arch: arm64
+          - name: "Windows Intel 64bit"
+            os: windows-2022
+            arch: AMD64
 
     steps:
 
@@ -62,32 +77,17 @@ jobs:
         with:
           submodules: true
 
-      #- name: "Set up QEMU"
-      #  if: runner.os == 'Linux'
-      #  uses: docker/setup-qemu-action@v3
+      - name: "Set up QEMU"
+        if: runner.os == 'Linux' && matrix.target.arch == 'aarch64'
+        uses: docker/setup-qemu-action@v3
 
-      - name: "Build Linux or Windows wheels"
+      - name: "Build wheels"
         uses: pypa/cibuildwheel@v3.0.0
-        if: runner.os != 'macOS'
         env:
-          CIBW_ARCHS_LINUX: auto aarch64
-          CIBW_ARCHS_WINDOWS: AMD64
-          PIP_USE_PEP517: 1
-
-      - name: "Build macOS arm64 wheels"
-        uses: pypa/cibuildwheel@v3.0.0
-        if: runner.os == 'macOS'
-        env:
-          CMAKE_OSX_ARCHITECTURES: arm64
-          CIBW_ARCHS_MACOS: arm64
-          PIP_USE_PEP517: 1
-
-      - name: "Build macOS x86_64 wheels"
-        uses: pypa/cibuildwheel@v3.0.0
-        if: runner.os == 'macOS'
-        env:
-          CMAKE_OSX_ARCHITECTURES: x86_64
-          CIBW_ARCHS_MACOS: x86_64
+          CIBW_ARCHS_LINUX: ${{ matrix.target.arch }}
+          CIBW_ARCHS_WINDOWS: ${{ matrix.target.arch }}
+          CIBW_ARCHS_MACOS: ${{ matrix.target.arch }}
+          CMAKE_OSX_ARCHITECTURES: ${{ matrix.target.arch }}
           PIP_USE_PEP517: 1
 
       - name: "DEBUG"
@@ -101,7 +101,7 @@ jobs:
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ matrix.os }}
+          name: wheels-${{ matrix.target.os }}-${{ matrix.target.arch }}
           path: ./wheelhouse/*.whl
           retention-days: 1
 
