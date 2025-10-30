@@ -23,7 +23,7 @@ jobs:
       - name: "Set up Python"
         uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: "3.14"
 
       - name: "Install python dependencies"
         run: |
@@ -52,6 +52,7 @@ jobs:
           - name: "Linux Intel 32bits"
             os: ubuntu-24.04
             arch: i686
+            cibw_skip: cp314-* cp314t-*  # CFFI has no more i686 support for Python >= 3.14
           - name: "Linux Intel 64bits"
             os: ubuntu-24.04
             arch: x86_64
@@ -87,6 +88,7 @@ jobs:
         env:
           CIBW_ARCHS: ${{ matrix.target.arch }}
           CMAKE_OSX_ARCHITECTURES: ${{ matrix.target.arch }}
+          CIBW_SKIP: ${{ matrix.target.cibw_skip }}
           PIP_USE_PEP517: 1
 
       - name: "Upload artifacts"
@@ -114,6 +116,10 @@ jobs:
           mkdir dist/
           mv sdist/* dist/
           mv wheels-*/*.whl dist/
+
+      - name: "List packages"
+        run: |
+          find . -name "*.whl" -o -name "*.tar.gz"
 
       - name: "Publish packages on PyPI"
         uses: pypa/gh-action-pypi-publish@release/v1
