@@ -3,7 +3,6 @@ from distutils import ccompiler
 
 from cffi import FFI
 
-
 _ROOT = os.path.abspath(os.path.dirname(__file__))
 _C_FILE = os.path.join(_ROOT, "mozjpeg_opti.c")
 _H_FILE = os.path.join(_ROOT, "mozjpeg_opti.h")

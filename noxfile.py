@@ -1,6 +1,5 @@
 import nox
 
-
 PYTHON_FILES = [
     "mozjpeg_lossless_optimization",
     "tests",
