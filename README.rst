@@ -187,6 +187,10 @@ Changelog
 
 * **[NEXT]** (changes on master but not released yet):
 
+  * Nothing yet ;)
+
+* **v1.3.3:**
+
   * misc: Added Python 3.15 support (@flozz)
   * misc!: Removed Python 3.10 support (@flozz)
   * misc!: Dropped Linux i686 support (@flozz)
