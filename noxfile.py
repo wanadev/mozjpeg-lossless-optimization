@@ -21,7 +21,7 @@ def lint(session):
     )
 
 
-@nox.session(python=["3.10", "3.11", "3.12", "3.13", "3.14"], reuse_venv=True)
+@nox.session(python=["3.11", "3.12", "3.13", "3.14", "3.15"], reuse_venv=True)
 def test(session):
     session.install("pytest")
     session.install(".")

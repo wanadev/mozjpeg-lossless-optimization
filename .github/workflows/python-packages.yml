@@ -23,7 +23,7 @@ jobs:
       - name: "Set up Python"
         uses: actions/setup-python@v7
         with:
-          python-version: "3.14"
+          python-version: "3.15"
 
       - name: "Install python dependencies"
         run: |
@@ -49,24 +49,20 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          - name: "Linux Intel 32bits"
-            os: ubuntu-24.04
-            arch: i686
-            cibw_skip: cp314-* cp314t-*  # CFFI has no more i686 support for Python >= 3.14
           - name: "Linux Intel 64bits"
-            os: ubuntu-24.04
+            os: ubuntu-26.04
             arch: x86_64
           - name: "Linux ARM 64bits"
-            os: ubuntu-24.04
+            os: ubuntu-26.04
             arch: aarch64
           - name: "Linux ARMv7"
-            os: ubuntu-24.04
+            os: ubuntu-26.04
             arch: armv7l
           - name: "macOS Intel 64bits"
-            os: macos-13
+            os: macos-15
             arch: x86_64
           - name: "macOS Apple Silicon (ARM 64bits)"
-            os: macos-14
+            os: macos-15
             arch: arm64
           - name: "Windows Intel 64bit"
             os: windows-2022

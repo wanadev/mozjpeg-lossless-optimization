@@ -17,6 +17,8 @@ This file is a memo for the maintainer.
       python3 -m venv checkwheel.env
       checkwheel.env/bin/pip install dist/*.tar.gz
 
+* Update copyright year in ``LICENSE``
+
 
 1. Release
 ----------
